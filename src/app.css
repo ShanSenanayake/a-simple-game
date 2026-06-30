@@ -49,6 +49,12 @@
   --shadow-pixel: 6px 6px 0 var(--tw-shadow-color, var(--color-ink));
   --shadow-pixel-sm: 3px 3px 0 var(--tw-shadow-color, var(--color-ink));
 
+  /* Semantic role aliases — use these in UI components instead of literal color names */
+  --color-primary: var(--color-grape-deep);
+  --color-primary-fg: var(--color-cream);
+  --color-secondary: var(--color-mustard);
+  --color-secondary-fg: var(--color-ink);
+
   /* Swatch foreground colors — text color to use ON each swatch background */
   --color-mint-fg: var(--color-ink);
   --color-mint-deep-fg: var(--color-ink);
@@ -97,8 +103,9 @@
   --color-mustard: var(--color-arcade-yellow);
   --color-coral: var(--color-arcade-pink);
   --color-ink: var(--color-arcade-text);
-  /* mustard-fg can't cascade correctly: arcade-ink is light but arcade-mustard is bright yellow */
+  /* mustard-fg / secondary-fg: arcade-ink is light but arcade-mustard is bright yellow */
   --color-mustard-fg: var(--color-arcade-bg);
+  --color-secondary-fg: var(--color-arcade-bg);
 }
 
 body {
