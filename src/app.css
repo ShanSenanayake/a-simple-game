@@ -1,3 +1,106 @@
+@import 'tailwindcss';
+
+@import 'tailwindcss';
+
+@theme {
+  /* Theme 1 — retro mint & grape (default / light) */
+  --color-mint: #c4f0d4;
+  --color-mint-deep: #8fdaab;
+  --color-grape: #6b4c8a;
+  --color-grape-deep: #4a3263;
+  --color-grape-light: #b89fd1;
+  --color-cream: #fdf6ec;
+  --color-mustard: #f2c14e;
+  --color-coral: #f08a6c;
+  --color-ink: #2b2438;
+
+  /* Theme 2 — candy arcade (dark) */
+  --color-arcade-bg: #1a1730;
+  --color-arcade-surface: #2c2650;
+  --color-arcade-pink: #ff4fd8;
+  --color-arcade-cyan: #00e5ff;
+  --color-arcade-pink-light: #ff8ae8;
+  --color-arcade-yellow: #ffe14d;
+  --color-arcade-card: #110f22;
+  --color-arcade-text: #f4f1ff;
+
+  /* Fonts */
+  --font-display: 'Press Start 2P', monospace;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Display font reads big even at small sizes, so its scale runs smaller than body */
+  --text-display-lg: 28px;
+  --text-display-lg--line-height: 1.5;
+  --text-display-md: 22px;
+  --text-display-md--line-height: 1.5;
+  --text-display-sm: 13px;
+  --text-display-sm--line-height: 1.5;
+  --text-display-sm--letter-spacing: 1px;
+  --text-display-xs: 9px;
+  --text-display-xs--line-height: 1.4;
+
+  /* Borders & radius */
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+  --radius-block: 3px;
+  --radius-card: 6px;
+
+  /* Hard-edged "pixel" shadows instead of blurred drop shadows */
+  --shadow-pixel: 6px 6px 0 var(--tw-shadow-color, var(--color-ink));
+  --shadow-pixel-sm: 3px 3px 0 var(--tw-shadow-color, var(--color-ink));
+
+  /* Swatch foreground colors — text color to use ON each swatch background */
+  --color-mint-fg: var(--color-ink);
+  --color-mint-deep-fg: var(--color-ink);
+  --color-grape-fg: var(--color-cream);
+  --color-grape-deep-fg: var(--color-cream);
+  --color-mustard-fg: var(--color-ink);
+  --color-coral-fg: var(--color-ink);
+
+  /* Animations */
+  --animate-shake: shake 0.3s ease-in-out;
+  --animate-flip: flip 0.25s ease-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Toggle the candy-arcade theme by adding data-theme="arcade" to <html> or <body> */
+[data-theme='arcade'] {
+  --color-mint: var(--color-arcade-bg);
+  --color-mint-deep: var(--color-arcade-surface);
+  --color-grape: var(--color-arcade-pink);
+  --color-grape-deep: var(--color-arcade-cyan);
+  --color-grape-light: var(--color-arcade-pink-light);
+  --color-cream: var(--color-arcade-card);
+  --color-mustard: var(--color-arcade-yellow);
+  --color-coral: var(--color-arcade-pink);
+  --color-ink: var(--color-arcade-text);
+  /* mustard-fg can't cascade correctly: arcade-ink is light but arcade-mustard is bright yellow */
+  --color-mustard-fg: var(--color-arcade-bg);
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
