@@ -1,6 +1,7 @@
 <script lang="ts">
   import DesignSystem from './lib/DesignSystem.svelte';
   import ThemeToggle from './lib/ThemeToggle.svelte';
+  import Button from './lib/Button.svelte';
   import { theme } from './lib/theme';
 
   let showDesignSystem = false;
@@ -25,10 +26,7 @@
         A Simple Game
       </h1>
       <ThemeToggle />
-      <button
-        class="font-display text-display-xs px-4 py-3 border-3 border-ink rounded-block bg-cream text-ink cursor-pointer"
-        on:click={() => (showDesignSystem = true)}>Design System</button
-      >
+      <Button variant="ghost" on:click={() => (showDesignSystem = true)}>Design System</Button>
     </div>
   {/if}
 </div>
