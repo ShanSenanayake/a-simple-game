@@ -26,6 +26,8 @@
     },
   };
 
+  import Button from '../components/Button.svelte';
+
   export let onBack: (() => void) | undefined = undefined;
 
   let theme: ThemeName = 'mint';
@@ -49,26 +51,30 @@
   />
 </svelte:head>
 
-<div class="bg-mint font-mono text-ink min-h-screen px-4 pt-20 pb-10 sm:px-6 sm:pt-24 sm:pb-12 transition-colors duration-200" data-theme={theme}>
+<div
+  class="bg-mint font-mono text-ink min-h-screen px-4 pt-20 pb-10 sm:px-6 sm:pt-24 sm:pb-12 transition-colors duration-200"
+  data-theme={theme}
+>
   <div class="fixed top-4 right-4 sm:top-6 sm:right-6 flex gap-2 z-10">
     {#if onBack}
-      <button
-        class="font-display text-display-xs px-3 py-3 sm:px-3.5 sm:py-2.5 border-3 border-ink rounded-block bg-cream text-ink cursor-pointer"
-        on:click={onBack}
-      >← BACK</button>
+      <Button variant="ghost" size="s" on:click={onBack}>← BACK</Button>
     {/if}
-    <button
-      class="font-display text-display-xs px-3 py-3 sm:px-3.5 sm:py-2.5 border-3 border-ink rounded-block text-ink cursor-pointer {theme === 'mint' ? 'bg-mustard' : 'bg-cream'}"
-      on:click={() => (theme = 'mint')}
-    >MINT</button>
-    <button
-      class="font-display text-display-xs px-3 py-3 sm:px-3.5 sm:py-2.5 border-3 border-ink rounded-block text-ink cursor-pointer {theme === 'arcade' ? 'bg-mustard' : 'bg-cream'}"
-      on:click={() => (theme = 'arcade')}
-    >ARCADE</button>
+    <Button
+      variant={theme === 'mint' ? 'primary' : 'ghost'}
+      size="s"
+      on:click={() => (theme = 'mint')}>MINT</Button
+    >
+    <Button
+      variant={theme === 'arcade' ? 'primary' : 'ghost'}
+      size="s"
+      on:click={() => (theme = 'arcade')}>ARCADE</Button
+    >
   </div>
 
   <div class="max-w-220 mx-auto">
-    <h1 class="font-display text-display-lg text-grape-deep leading-normal mb-2">RIDDLE&nbsp;QUEST</h1>
+    <h1 class="font-display text-display-lg text-grape-deep leading-normal mb-2">
+      RIDDLE&nbsp;QUEST
+    </h1>
     <p class="text-[13px] sm:text-[15px] text-grape mb-8 sm:mb-12">{current.label}</p>
 
     <section class="mb-10 sm:mb-14">
@@ -89,7 +95,9 @@
     <section class="mb-10 sm:mb-14">
       <h2 class="font-display text-display-sm text-grape-deep mb-4 tracking-[1px]">TYPOGRAPHY</h2>
       <div class="bg-cream border-3 border-ink rounded-block p-4 sm:p-6">
-        <p class="font-display text-display-sm sm:text-display-md text-grape-deep mb-3">A PIXEL TITLE</p>
+        <p class="font-display text-display-sm sm:text-display-md text-grape-deep mb-3">
+          A PIXEL TITLE
+        </p>
         <p class="text-[14px] sm:text-[15px] leading-[1.6] mb-2">
           Body copy uses Space Mono — readable at riddle length, still feels like a terminal. "I
           have keys but no locks..."
@@ -99,17 +107,33 @@
     </section>
 
     <section class="mb-10 sm:mb-14">
-      <h2 class="font-display text-display-sm text-grape-deep mb-4 tracking-[1px]">RIDDLE CARD COMPONENT</h2>
-      <div class="bg-cream border-4 border-ink rounded-card p-4 sm:p-7 shadow-pixel shadow-grape-deep">
+      <h2 class="font-display text-display-sm text-grape-deep mb-4 tracking-[1px]">
+        RIDDLE CARD COMPONENT
+      </h2>
+      <div
+        class="bg-cream border-4 border-ink rounded-card p-4 sm:p-7 shadow-pixel shadow-grape-deep"
+      >
         <p class="font-display text-[11px] text-coral mb-4">RIDDLE 03</p>
         <p class="text-[14px] sm:text-[16px] leading-[1.8] mb-6">
           I have keys but no locks. I have space but no room. You can enter, but you can't go
           inside. What am I?
         </p>
         <div class="flex gap-1.5 flex-wrap mb-6">
-          <div class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block">K</div>
-          <div class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block">E</div>
-          <div class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block">Y</div>
+          <div
+            class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block"
+          >
+            K
+          </div>
+          <div
+            class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block"
+          >
+            E
+          </div>
+          <div
+            class="w-7 h-7 bg-mint-deep text-ink flex items-center justify-center font-display text-[12px] border-2 border-ink rounded-block"
+          >
+            Y
+          </div>
           <div class="w-7 h-7 bg-grape rounded-block"></div>
           <div class="w-7 h-7 bg-grape rounded-block"></div>
           <div class="w-7 h-7 bg-grape rounded-block"></div>
@@ -122,13 +146,18 @@
             type="text"
             placeholder="type your guess..."
           />
-          <button class="font-display text-[11px] px-4 py-3 bg-mustard border-3 border-ink rounded-block cursor-pointer shadow-pixel-sm shadow-ink whitespace-nowrap">GUESS</button>
+          <button
+            class="font-display text-[11px] px-4 py-3 bg-mustard border-3 border-ink rounded-block cursor-pointer shadow-pixel-sm shadow-ink whitespace-nowrap"
+            >GUESS</button
+          >
         </div>
       </div>
     </section>
 
     <section class="mb-10 sm:mb-14">
-      <h2 class="font-display text-display-sm text-grape-deep mb-4 tracking-[1px]">FEEDBACK STATES</h2>
+      <h2 class="font-display text-display-sm text-grape-deep mb-4 tracking-[1px]">
+        FEEDBACK STATES
+      </h2>
       <div class="flex flex-col sm:flex-row gap-4">
         <div class="flex-1 border-3 border-ink rounded-block p-4 text-[13px] bg-mint-deep">
           <span class="font-display text-[10px] mb-2 inline-block">CORRECT</span>

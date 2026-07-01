@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Button from '../../Button.svelte';
-  import { gameState } from '../../gameState';
+  import Button from '../../components/Button.svelte';
+  import { gameState } from '../../lib/gameState';
 </script>
 
 <main class="flex flex-col items-center justify-center min-h-screen pt-16 gap-8 px-4">

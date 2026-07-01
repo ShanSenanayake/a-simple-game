@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Header from './Header.svelte';
-  import Initial from './game/Initial/Initial.svelte';
-  import Riddle1 from './game/riddle1/Riddle1.svelte';
+  import Header from '../components/Header.svelte';
+  import Initial from '../game/Initial/Initial.svelte';
+  import Riddle1 from '../game/riddle1/Riddle1.svelte';
   import { currentStage } from './gameState';
 
   export let onDesignSystem: () => void;

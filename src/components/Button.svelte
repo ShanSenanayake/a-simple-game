@@ -3,9 +3,9 @@
   export let size: 's' | 'm' | 'l' = 'm';
 
   const sizeClasses = {
-    s: 'text-display-xs px-3 py-2',
-    m: 'text-display-xs px-4 py-3',
-    l: 'text-display-sm px-6 py-5',
+    s: 'text-display-xs px-3 py-2 min-h-11',
+    m: 'text-display-xs px-4 py-3 min-h-11',
+    l: 'text-display-sm px-6 py-5 min-h-14',
   };
 </script>
 

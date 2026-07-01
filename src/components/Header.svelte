@@ -1,7 +1,7 @@
 <script lang="ts">
   import ThemeToggle from './ThemeToggle.svelte';
   import Button from './Button.svelte';
-  import { gameState } from './gameState';
+  import { gameState } from '../lib/gameState';
 
   export let onDesignSystem: () => void;
 </script>

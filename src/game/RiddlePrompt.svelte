@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from '../components/Button.svelte';
+
   interface Props {
     onSubmit: (value: number) => void;
   }
@@ -20,30 +22,35 @@
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'Enter') handleSubmit();
+    if (e.key === 'Enter') {
+      handleSubmit();
+      return;
+    }
+    const passthrough = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+    if (!passthrough.includes(e.key) && !/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
+  }
+
+  function handleInput() {
+    const num = parseInt(inputValue, 10);
+    if (!isNaN(num) && num > 99) inputValue = '99';
+    if (!isNaN(num) && num < 0) inputValue = '0';
   }
 </script>
 
 <div class="flex items-center gap-2 {inputError ? 'animate-shake' : ''}">
   <input
     class="w-20 text-center font-mono text-3xl font-bold px-2 min-h-14 border-3 rounded-block bg-cream text-ink
-      caret-transparent [caret-shape:block] focus:animate-terminal-blink
+      caret-transparent [caret-shape:block] focus:animate-terminal-blink outline-none
       {inputError ? 'border-coral' : 'border-ink'}"
     type="number"
     min="0"
     max="99"
     bind:value={inputValue}
     onkeydown={handleKeydown}
+    oninput={handleInput}
     placeholder="00"
   />
-  <button
-    class="font-display text-display-xs px-4 min-h-11 bg-secondary border-3 border-ink rounded-block
-      cursor-pointer shadow-pixel-sm shadow-ink whitespace-nowrap shrink-0
-      hover:-translate-x-0.75 hover:-translate-y-0.75 hover:shadow-pixel
-      active:translate-x-0 active:translate-y-0 active:shadow-pixel-sm
-      transition duration-100"
-    onclick={handleSubmit}
-  >
-    SUBMIT
-  </button>
+  <Button on:click={handleSubmit}>SUBMIT</Button>
 </div>

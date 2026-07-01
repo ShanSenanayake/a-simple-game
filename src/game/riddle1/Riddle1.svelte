@@ -1,7 +1,7 @@
 <script lang="ts">
   import RiddleLayout from '../RiddleLayout.svelte';
   import type { Guess } from '../types.ts';
-  import { gameState } from '../../gameState';
+  import { gameState } from '../../lib/gameState';
 
   let guesses = $state<Guess[]>([]);
 
