@@ -20,6 +20,7 @@
       {@const completed = i + 1 < riddleNumber}
       {@const answer = completed ? solvedAnswer(i) : undefined}
       <div
+        id="progress-slot-{i}"
         class="sm:h-16 h-8 border-3 rounded-block flex items-center justify-center font-display text-display-xs
           {completed
           ? 'bg-mint-deep border-ink text-ink'
