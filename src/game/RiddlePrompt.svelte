@@ -2,7 +2,7 @@
   import Button from '../components/Button.svelte';
 
   interface Props {
-    onSubmit: (value: number) => void;
+    onSubmit: (value: number) => boolean;
   }
 
   let { onSubmit }: Props = $props();
@@ -17,7 +17,10 @@
       setTimeout(() => (inputError = false), 400);
       return;
     }
-    onSubmit(num);
+    if (onSubmit(num)) {
+      inputError = true;
+      setTimeout(() => (inputError = false), 400);
+    }
     inputValue = '';
   }
 
@@ -39,7 +42,7 @@
   }
 </script>
 
-<div class="flex items-center gap-2 {inputError ? 'animate-shake' : ''}">
+<div class="flex justify-center gap-2 {inputError ? 'animate-shake' : ''}">
   <input
     class="w-20 text-center font-mono text-3xl font-bold px-2 min-h-14 border-3 rounded-block bg-cream text-ink
       caret-transparent [caret-shape:block] focus:animate-terminal-blink outline-none

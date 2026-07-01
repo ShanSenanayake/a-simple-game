@@ -26,7 +26,12 @@ The application follows a custom **Retrotechnical Terminal / Command-Line Interf
 - Inputs must match command prompt rules (e.g., `<span class="text-terminal-green">user@system:~$</span>` preceding an input box).
 - Interactive nodes must look like un-styled ASCII elements that light up using `hover:bg-terminal-green hover:text-terminal-bg` transitions rather than generic pill buttons.
 
-## 3. Code & Reactivity Standards
+## 3. Component Reuse
+
+- **Always use `Button` from `src/components/Button.svelte`** for every interactive button. Never write a raw `<button>` element outside of that component itself.
+- All shared UI components (Button, Header, ThemeToggle, etc.) live in `src/components/`. Game-specific components live in `src/game/`.
+
+## 4. Code & Reactivity Standards
 
 When writing `.svelte` components, strictly follow these structural principles:
 
