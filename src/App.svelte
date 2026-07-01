@@ -1,6 +1,6 @@
 <script lang="ts">
   import DesignSystem from './lib/DesignSystem.svelte';
-  import ThemeToggle from './lib/ThemeToggle.svelte';
+  import Header from './lib/Header.svelte';
   import Button from './lib/Button.svelte';
   import { theme } from './lib/theme';
 
@@ -14,19 +14,19 @@
   />
 </svelte:head>
 
-<div
+<section
   data-theme={$theme === 'arcade' ? 'arcade' : undefined}
   class="min-h-screen bg-mint font-mono text-ink transition-colors duration-200"
 >
   {#if showDesignSystem}
     <DesignSystem onBack={() => (showDesignSystem = false)} />
   {:else}
-    <div class="flex flex-col items-center justify-center min-h-screen gap-8 px-4">
+    <Header onDesignSystem={() => (showDesignSystem = true)} />
+    <main class="flex flex-col items-center justify-center min-h-screen pt-16 gap-8 px-4">
       <h1 class="font-display text-display-lg text-primary leading-normal text-center">
         A Simple Game
       </h1>
-      <ThemeToggle />
-      <Button variant="ghost" on:click={() => (showDesignSystem = true)}>Design System</Button>
-    </div>
+      <Button size="l" on:click={() => {}}>START</Button>
+    </main>
   {/if}
-</div>
+</section>
