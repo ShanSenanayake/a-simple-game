@@ -3,9 +3,10 @@
 
   interface Props {
     onSubmit: (value: number) => boolean;
+    isAnimating?: boolean;
   }
 
-  let { onSubmit }: Props = $props();
+  let { onSubmit, isAnimating = false }: Props = $props();
 
   let inputValue = $state<number | ''>('');
   let inputError = $state(false);
@@ -47,14 +48,16 @@
   <input
     class="w-20 text-center font-mono text-3xl font-bold px-2 min-h-14 border-3 rounded-block bg-cream text-ink
       caret-transparent [caret-shape:block] focus:animate-terminal-blink outline-none
-      {inputError ? 'border-coral' : 'border-ink'}"
+      {inputError ? 'border-coral' : 'border-ink'}
+      {isAnimating ? 'opacity-40 cursor-not-allowed' : ''}"
     type="number"
     min="0"
     max="99"
+    disabled={isAnimating}
     bind:value={inputValue}
     onkeydown={handleKeydown}
     oninput={handleInput}
     placeholder="00"
   />
-  <Button on:click={handleSubmit}>SUBMIT</Button>
+  <Button on:click={handleSubmit} disabled={isAnimating}>SUBMIT</Button>
 </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
   export let variant: 'primary' | 'ghost' = 'primary';
   export let size: 's' | 'm' | 'l' = 'm';
+  export let disabled: boolean = false;
   let extraClass = '';
   export { extraClass as class };
 
@@ -13,11 +14,13 @@
 
 <button
   type="button"
-  class="font-display {sizeClasses[size]} border-3 border-ink rounded-block cursor-pointer
+  {disabled}
+  class="font-display {sizeClasses[size]} border-3 border-ink rounded-block
     transition duration-100 ease-out
     shadow-pixel-sm shadow-ink
-    hover:-translate-x-0.75 hover:-translate-y-0.75 hover:shadow-pixel
-    active:-translate-x-0.75 active:-translate-y-0.75 active:shadow-pixel
+    {disabled
+    ? 'opacity-40 cursor-not-allowed'
+    : 'cursor-pointer hover:-translate-x-0.75 hover:-translate-y-0.75 hover:shadow-pixel active:-translate-x-0.75 active:-translate-y-0.75 active:shadow-pixel'}
     {variant === 'primary' ? 'bg-secondary' : 'bg-cream text-ink'}
     {extraClass}"
   on:click

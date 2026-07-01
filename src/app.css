@@ -71,6 +71,15 @@
   --animate-blink-block: blink-block 1s step-end infinite;
 }
 
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes shake {
   0%,
   100% {
