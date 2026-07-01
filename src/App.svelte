@@ -1,7 +1,6 @@
 <script lang="ts">
   import DesignSystem from './lib/DesignSystem.svelte';
-  import Header from './lib/Header.svelte';
-  import Button from './lib/Button.svelte';
+  import Game from './lib/Game.svelte';
   import { theme } from './lib/theme';
 
   let showDesignSystem = false;
@@ -21,12 +20,6 @@
   {#if showDesignSystem}
     <DesignSystem onBack={() => (showDesignSystem = false)} />
   {:else}
-    <Header onDesignSystem={() => (showDesignSystem = true)} />
-    <main class="flex flex-col items-center justify-center min-h-screen pt-16 gap-8 px-4">
-      <h1 class="font-display text-display-lg text-primary leading-normal text-center">
-        A Simple Game
-      </h1>
-      <Button size="l" on:click={() => {}}>START</Button>
-    </main>
+    <Game onDesignSystem={() => (showDesignSystem = true)} />
   {/if}
 </section>
