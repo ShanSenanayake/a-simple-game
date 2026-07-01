@@ -1,13 +1,14 @@
 <script lang="ts">
   import { get } from 'svelte/store';
   import RiddleLayout from '../RiddleLayout.svelte';
+  import VictoryOverlay from '../VictoryOverlay.svelte';
   import { gameState, currentStageGuesses } from '../../lib/gameState';
 
   const clues = [{ label: 'CLUE 01', content: '...' }];
 
   type ClueState = 'locked' | 'scanning' | 'revealed';
 
-  const ANSWER = ''; // TODO: btoa('<answer>')
+  const ANSWER = 'Njg='; // btoa('68')
   const SCAN_DURATION = 1400;
 
   const initialCount = get(currentStageGuesses).length;
@@ -17,9 +18,10 @@
 
   let guessCount = $derived($currentStageGuesses.length);
   let isAnimating = $derived(clueState.some((s) => s === 'scanning'));
+  let victoryAnswer = $state<number | null>(null);
 
   function handleSubmit(value: number): boolean {
-    const correct = ANSWER !== '' && btoa(String(value)) === ANSWER;
+    const correct = btoa(String(value)) === ANSWER;
     const countBefore = get(currentStageGuesses).length;
     gameState.addGuess(value, correct);
     const countAfter = get(currentStageGuesses).length;
@@ -27,7 +29,7 @@
 
     if (correct) {
       gameState.solve();
-      gameState.advance();
+      victoryAnswer = value;
       return false;
     }
 
@@ -94,3 +96,11 @@
     {/each}
   </div>
 </RiddleLayout>
+
+{#if victoryAnswer !== null}
+  <VictoryOverlay
+    answer={victoryAnswer}
+    targetSlotId="progress-slot-1"
+    onAdvance={() => gameState.advance()}
+  />
+{/if}
