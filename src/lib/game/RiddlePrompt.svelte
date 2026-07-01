@@ -10,7 +10,7 @@
 
   function handleSubmit() {
     const num = parseInt(inputValue, 10);
-    if (isNaN(num) || inputValue.trim() === '') {
+    if (isNaN(num) || inputValue.trim() === '' || num < 0 || num > 99) {
       inputError = true;
       setTimeout(() => (inputError = false), 400);
       return;
@@ -25,17 +25,16 @@
 </script>
 
 <div class="flex items-center gap-2 {inputError ? 'animate-shake' : ''}">
-  <span class="font-mono text-[13px] text-grape-deep whitespace-nowrap shrink-0 hidden sm:inline">
-    user@system:~$
-  </span>
-  <span class="font-mono text-[13px] text-grape-deep whitespace-nowrap shrink-0 sm:hidden">$</span>
   <input
-    class="flex-1 font-mono text-[14px] px-3 min-h-11 border-3 rounded-block bg-white min-w-0
+    class="w-20 text-center font-mono text-3xl font-bold px-2 min-h-14 border-3 rounded-block bg-cream text-ink
+      caret-transparent [caret-shape:block] focus:animate-terminal-blink
       {inputError ? 'border-coral' : 'border-ink'}"
     type="number"
+    min="0"
+    max="99"
     bind:value={inputValue}
     onkeydown={handleKeydown}
-    placeholder="enter a number..."
+    placeholder="00"
   />
   <button
     class="font-display text-display-xs px-4 min-h-11 bg-secondary border-3 border-ink rounded-block

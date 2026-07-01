@@ -22,6 +22,7 @@
   --color-arcade-pink-light: #ff8ae8;
   --color-arcade-yellow: #ffe14d;
   --color-arcade-card: #110f22;
+  --color-arcade-tangerine: #ff6b35;
   --color-arcade-text: #f4f1ff;
 
   /* Fonts */
@@ -66,6 +67,8 @@
   /* Animations */
   --animate-shake: shake 0.3s ease-in-out;
   --animate-flip: flip 0.25s ease-out;
+  --animate-terminal-blink: terminal-blink 1s step-end infinite;
+  --animate-blink-block: blink-block 1s step-end infinite;
 }
 
 @keyframes shake {
@@ -92,6 +95,37 @@
   }
 }
 
+@keyframes terminal-blink {
+  0%,
+  100% {
+    caret-color: var(--color-grape-deep);
+  }
+  50% {
+    caret-color: transparent;
+  }
+}
+
+@keyframes blink-block {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 /* Toggle the candy-arcade theme by adding data-theme="arcade" to <html> or <body> */
 [data-theme='arcade'] {
   --color-mint: var(--color-arcade-bg);
@@ -101,7 +135,7 @@
   --color-grape-light: var(--color-arcade-pink-light);
   --color-cream: var(--color-arcade-card);
   --color-mustard: var(--color-arcade-yellow);
-  --color-coral: var(--color-arcade-pink);
+  --color-coral: var(--color-arcade-tangerine);
   --color-ink: var(--color-arcade-text);
   /* mustard-fg / secondary-fg: arcade-ink is light but arcade-mustard is bright yellow */
   --color-mustard-fg: var(--color-arcade-bg);
