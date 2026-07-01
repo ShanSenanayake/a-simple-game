@@ -4,11 +4,14 @@
   import VictoryOverlay from '../VictoryOverlay.svelte';
   import { gameState, currentStageGuesses } from '../../lib/gameState';
 
-  const clues = [{ label: 'CLUE 01', content: '...' }];
+  const clues = [
+    { label: 'CLUE 01', content: 'Hercules Song' },
+    { label: 'CLUE 01', content: 'Hercules' },
+  ];
 
   type ClueState = 'locked' | 'scanning' | 'revealed';
 
-  const ANSWER = ''; // TODO: btoa('<answer>')
+  const ANSWER = 'MA=='; // btoa('0')
   const SCAN_DURATION = 1400;
 
   const initialCount = get(currentStageGuesses).length;
@@ -21,7 +24,7 @@
   let victoryAnswer = $state<number | null>(null);
 
   function handleSubmit(value: number): boolean {
-    const correct = ANSWER !== '' && btoa(String(value)) === ANSWER;
+    const correct = btoa(String(value)) === ANSWER;
     const countBefore = get(currentStageGuesses).length;
     gameState.addGuess(value, correct);
     const countAfter = get(currentStageGuesses).length;

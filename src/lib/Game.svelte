@@ -5,6 +5,7 @@
   import Riddle2 from '../game/riddle2/Riddle2.svelte';
   import Riddle3 from '../game/riddle3/Riddle3.svelte';
   import Riddle4 from '../game/riddle4/Riddle4.svelte';
+  import GameComplete from '../game/GameComplete.svelte';
   import { currentStage } from './gameState';
 
   export let onDesignSystem: () => void;
@@ -22,4 +23,6 @@
   <Riddle3 />
 {:else if $currentStage === 4}
   <Riddle4 />
+{:else if $currentStage >= 5}
+  <GameComplete />
 {/if}
