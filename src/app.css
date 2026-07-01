@@ -70,6 +70,16 @@
   --animate-terminal-blink: terminal-blink 1s step-end infinite;
   --animate-blink-block: blink-block 1s step-end infinite;
   --animate-victory-pop: victory-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-row-slide-in: row-slide-in 1.4s ease-out forwards;
+}
+
+@keyframes row-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 @keyframes victory-pop {
