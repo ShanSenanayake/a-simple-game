@@ -1,1 +1,1 @@
-export type Guess = { value: number; correct: boolean };
+export type { Guess } from '../lib/gameState';

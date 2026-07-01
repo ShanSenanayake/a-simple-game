@@ -1,9 +1,12 @@
 import { writable, derived } from 'svelte/store';
 
+export type Guess = { value: number; correct: boolean };
+
 export type StageState = {
   solved: boolean;
   attempts: number;
   hintsUsed: number;
+  guesses: Guess[];
 };
 
 export type GameState = {
@@ -22,6 +25,7 @@ const DEFAULT_STAGE_STATE: StageState = {
   solved: false,
   attempts: 0,
   hintsUsed: 0,
+  guesses: [],
 };
 
 function load(): GameState {
@@ -68,6 +72,19 @@ export const gameState = {
     });
   },
 
+  addGuess(value: number, correct: boolean) {
+    store.update((s) => {
+      const stage = stageOf(s, s.currentStage);
+      const existing = stage.guesses ?? [];
+      if (existing.some((g) => g.value === value)) return s;
+      const updated = [...existing, { value, correct }].slice(-5);
+      return {
+        ...s,
+        stages: { ...s.stages, [s.currentStage]: { ...stage, guesses: updated } },
+      };
+    });
+  },
+
   solve() {
     store.update((s) => {
       const stage = stageOf(s, s.currentStage);
@@ -95,5 +112,5 @@ export const gameState = {
 
 // Convenience derived stores
 export const currentStage = derived(gameState, ($g) => $g.currentStage);
-
 export const currentStageState = derived(gameState, ($g) => stageOf($g, $g.currentStage));
+export const currentStageGuesses = derived(gameState, ($g) => stageOf($g, $g.currentStage).guesses);

@@ -7,12 +7,12 @@
 
   let { onSubmit }: Props = $props();
 
-  let inputValue = $state('');
+  let inputValue = $state<number | ''>('');
   let inputError = $state(false);
 
   function handleSubmit() {
-    const num = parseInt(inputValue, 10);
-    if (isNaN(num) || inputValue.trim() === '' || num < 0 || num > 99) {
+    const num = Number(inputValue);
+    if (inputValue === '' || !Number.isInteger(num) || num < 0 || num > 99) {
       inputError = true;
       setTimeout(() => (inputError = false), 400);
       return;
@@ -36,9 +36,10 @@
   }
 
   function handleInput() {
-    const num = parseInt(inputValue, 10);
-    if (!isNaN(num) && num > 99) inputValue = '99';
-    if (!isNaN(num) && num < 0) inputValue = '0';
+    if (inputValue === '') return;
+    const num = Number(inputValue);
+    if (num > 99) inputValue = 99;
+    if (num < 0) inputValue = 0;
   }
 </script>
 

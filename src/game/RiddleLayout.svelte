@@ -11,7 +11,7 @@
   interface Props {
     riddleNumber: number;
     guesses?: Guess[];
-    onSubmit: (value: number) => void;
+    onSubmit: (value: number) => boolean;
     children: Snippet;
   }
   const totalRiddles = 4;
