@@ -3,20 +3,11 @@
   import RiddleLayout from '../RiddleLayout.svelte';
   import { gameState, currentStageGuesses } from '../../lib/gameState';
 
-  const clues = [
-    { label: 'CLUE 01', content: 'Beware the leopard' },
-    { label: 'CLUE 02', content: 'Vogon Poetry' },
-    { label: 'CLUE 03', content: 'Always pack a towel' },
-    { label: 'CLUE 04', content: 'So long and thanks for all the fish' },
-    {
-      label: 'CLUE 05',
-      content: 'The Answer to the Ultimate Question of Life, the Universe, and Everything is: ',
-    },
-  ];
+  const clues = [{ label: 'CLUE 01', content: '...' }];
 
   type ClueState = 'locked' | 'scanning' | 'revealed';
 
-  const ANSWER = 'NDI='; // btoa('42')
+  const ANSWER = ''; // TODO: btoa('<answer>')
   const SCAN_DURATION = 1400;
 
   const initialCount = get(currentStageGuesses).length;
@@ -28,7 +19,7 @@
   let isAnimating = $derived(clueState.some((s) => s === 'scanning'));
 
   function handleSubmit(value: number): boolean {
-    const correct = btoa(String(value)) === ANSWER;
+    const correct = ANSWER !== '' && btoa(String(value)) === ANSWER;
     const countBefore = get(currentStageGuesses).length;
     gameState.addGuess(value, correct);
     const countAfter = get(currentStageGuesses).length;
@@ -54,7 +45,7 @@
   }
 </script>
 
-<RiddleLayout riddleNumber={1} guesses={$currentStageGuesses} {isAnimating} onSubmit={handleSubmit}>
+<RiddleLayout riddleNumber={2} guesses={$currentStageGuesses} {isAnimating} onSubmit={handleSubmit}>
   <div class="flex flex-col gap-4">
     {#each clues as clue, i}
       <div>
