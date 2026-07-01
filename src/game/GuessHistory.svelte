@@ -13,15 +13,15 @@
     <p class="font-display text-display-xs text-grape tracking-[1px]">GUESSES</p>
   </div>
 
-  {#if guesses.length === 0}
-    <p class="font-mono text-[12px] text-ink/40 px-3 py-3">no guesses yet...</p>
-  {:else}
-    <div class="grid grid-cols-5 gap-1 ivide-y divide-ink/10 max-h-40 overflow-y-auto">
+  <div class="grid grid-cols-5 gap-1 p-3 ivide-y divide-ink/10 max-h-40 overflow-y-auto">
+    {#if guesses.length === 0}
+      <p class="font-mono text-xl col-span-5 text-ink/40">no guesses yet...</p>
+    {:else}
       {#each guesses as guess}
         <span class="text-ink text-center text-xl font-bold tabular-nums w-16 shrink-0"
           >{guess.value}</span
         >
       {/each}
-    </div>
-  {/if}
+    {/if}
+  </div>
 </div>
