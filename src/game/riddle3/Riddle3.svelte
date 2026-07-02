@@ -12,24 +12,22 @@
   let isProcessing = $state(false);
   let victoryAnswer = $state<number | null>(null);
   let hintMessage = $state<{ title: string; body: string } | null>(null);
-
+  let hasShownLastHint = $state(false);
   let isAnimating = $derived(isProcessing);
 
   function computeHint(value: number, prev: Guess[]): { title: string; body: string } | null {
     const had16 = prev.some((g) => g.value === 16);
     const had32 = prev.some((g) => g.value === 32);
     const newWrongCount = prev.filter((g) => !g.correct).length + 1;
-    const newHas16 = had16 || value === 16;
-    const newHas32 = had32 || value === 32;
 
-    if (newHas16 && newHas32 && newWrongCount >= 5) {
+    if (had16 && had32 && newWrongCount >= 5) {
       return {
         title: 'A CLEARER HINT.',
         body: 'Count every word in the riddle text. Each one matters. That total is your answer.',
       };
     }
 
-    if (value === 16 && !had16) {
+    if (value === 16 && !had32) {
       return {
         title: 'WELL REASONED.',
         body: "The math checks out perfectly. But something else is hidden in this riddle — look closely at what's highlighted. It might point you somewhere unexpected.",
@@ -43,7 +41,8 @@
       };
     }
 
-    if (newHas16 && newHas32 && (value === 16 || value === 32)) {
+    if (((value === 16 && had32) || (value === 32 && had16)) && !hasShownLastHint) {
+      hasShownLastHint = true;
       return {
         title: 'NEITHER IS CORRECT.',
         body: "You've found the mathematical solution and its double. Neither is the true answer. Have you tried counting something in the text?",

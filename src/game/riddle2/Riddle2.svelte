@@ -85,12 +85,12 @@
       {/snippet}
 
       <div class="flex flex-col gap-2">
-        <div class="grid grid-cols-11 gap-1.5 items-center">
+        <div class="grid grid-cols-11 gap-1">
           {#each ROW1 as dir, i}
             {@render arrowSvg(dir, arrowClass(ROW1_ORDER[i], wrongGuessCount))}
           {/each}
         </div>
-        <div class="grid grid-cols-12 gap-1.5 items-center">
+        <div class="grid grid-cols-12 gap-1">
           {#each ROW2 as dir, i}
             {@render arrowSvg(dir, arrowClass(ROW2_ORDER[i], wrongGuessCount))}
           {/each}
